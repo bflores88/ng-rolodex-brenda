@@ -24,6 +24,7 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/login', login);
 app.use('/api/logout', logout);
