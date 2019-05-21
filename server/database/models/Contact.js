@@ -2,6 +2,7 @@
 
 const bookshelf = require('../bookshelf');
 
+require('./User')
 class Contact extends bookshelf.Model {
   get tableName() {
     return 'contacts';
@@ -11,7 +12,7 @@ class Contact extends bookshelf.Model {
   }
 
   users () {
-    return this.hasMany('User', 'created_by');
+    return this.belongsTo('User', 'created_by');
   }
 
 }
