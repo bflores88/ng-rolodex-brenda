@@ -24,6 +24,13 @@ router
       name: req.body.name,
       created_by: req.body.created_by,
       address: req.body.address,
+      mobile: req.body.mobile,
+      work: req.body.work,
+      home: req.body.home,
+      email: req.body.email,
+      twitter: req.body.twitter,
+      instagram: req.body.instagram,
+      github: req.body.github
     })
       .save()
       .then((result) => {
