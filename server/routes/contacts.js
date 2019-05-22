@@ -10,7 +10,8 @@ router
   .get((req, res) => {
     let user = req.query.user;
 
-    Contact.where({ created_by: user })
+    Contact
+      // .where({ created_by: user })
       .fetchAll({ withRelated: ['users'] })
       .then((result) => {
         return res.json(result.toJSON());
@@ -76,8 +77,10 @@ router.route('/:id')
 
 router.route('/search/:term').get((req, res) => {
   let user = req.query.user;
-  Contact.query(function(qb) {
-    qb.where('created_by', '=', user).andWhere('name', 'LIKE', `%${req.params.term}%`);
+  console.log(req.params.term)
+  Contact.query(function (qb) {
+    qb.where("name", 'LIKE', `%${req.params.term}%`);
+    // qb.where('created_by', '=', user).andWhere('name', 'LIKE', `%${req.params.term}%`);
   })
     .fetchAll({ withRelated: 'users' })
     .then((result) => {
