@@ -10,8 +10,9 @@ router
   .get((req, res) => {
     let user = req.query.user;
 
-    Contact
+    Contact.forge()
       // .where({ created_by: user })
+      .orderBy('name', 'ASC')
       .fetchAll({ withRelated: ['users'] })
       .then((result) => {
         return res.json(result.toJSON());
@@ -21,18 +22,8 @@ router
       });
   })
   .post((req, res) => {
-    new Contact({
-      name: req.body.name,
-      created_by: req.body.created_by,
-      address: req.body.address,
-      mobile: req.body.mobile,
-      work: req.body.work,
-      home: req.body.home,
-      email: req.body.email,
-      twitter: req.body.twitter,
-      instagram: req.body.instagram,
-      github: req.body.github
-    })
+    console.log('********', req.body)
+    new Contact(checkBodyUpdates(req.body))
       .save()
       .then((result) => {
         return res.json(result.toJSON());

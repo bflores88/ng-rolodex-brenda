@@ -47,3 +47,21 @@ body {
 .github {
   color: #6e5494;
 }
+
+.contact-subsection {
+  margin-top: 5px;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+.split-subsection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+
+  .contact-subsection {
+    width: 150px;
+    margin-top: 10px;
+  }
+}
