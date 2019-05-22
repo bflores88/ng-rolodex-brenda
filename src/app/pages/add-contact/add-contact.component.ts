@@ -29,9 +29,32 @@ export class AddContactComponent implements OnInit {
     twitter: string;
     instagram: string;
     github: string;
-  }[] = []
+  }[] = [];
 
-  constructor(private backend: BackendService) { }
+  addContactFormData: {
+    name: string;
+    address: string;
+    mobile: string;
+    work: string;
+    home: string;
+    email: string;
+    twitter: string;
+    instagram: string;
+    github: string;
+  } = {
+    name: '',
+    address: '',
+    mobile: '',
+    work: '',
+    home: '',
+    email: '',
+    twitter: '',
+    instagram: '',
+    github: '',
+
+  }
+
+ constructor(private backend: BackendService) { }
 
   ngOnInit() {
   }

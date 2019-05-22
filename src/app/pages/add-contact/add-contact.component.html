@@ -1,1 +1,74 @@
-<div class="page"></div>
+<div class="page">
+  <h1>Add New Contact</h1>
+
+  <div class="add-contact-form">
+    <form>
+      <div class="contact-form-card">
+        <div class="contact-name">
+          <label for="name"><i class="far fa-user"></i>&nbsp;&nbsp;</label>
+          <input type="text" class="input-name" placeholder="name" name="name" [(ngModel)]="addContactFormData.name" />
+        </div>
+
+        <div class="contact-subsection">
+ 
+            <label for="address" class="sub-label"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;</label>
+            <input type="text" class="long-input" placeholder="address" name="address" [(ngModel)]="addContactFormData.address" />
+
+        </div>
+
+        <div class="contact-subsection">
+
+              <label for="email"><i class="fas fa-envelope"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="long-input" placeholder="email" name="email" [(ngModel)]="addContactFormData.email" />
+
+          </div>
+
+        <div class="contact-subsection">
+          <div class="contact-sub-subsection">
+            <div class="contact-sub-sub-subsection">
+              <label for="mobile"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="mobile phone" name="mobile" [(ngModel)]="addContactFormData.mobile" />
+            </div><br>
+            <div class="contact-sub-sub-subsection">
+              <label for="work"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="work phone" name="work" [(ngModel)]="addContactFormData.work" />
+            </div><br>
+            <div class="contact-sub-sub-subsection">
+              <label for="home"><i class="fas fa-phone"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="home phone" name="home" [(ngModel)]="addContactFormData.home" />
+            </div>
+          </div>
+          <div class="contact-sub-subsection">
+            <div class="contact-sub-sub-subsection">
+              <label for="twitter" class="twitter"><i class="fab fa-twitter-square"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="twitter" name="twitter" [(ngModel)]="addContactFormData.twitter" />
+            </div><br>
+            <div class="contact-sub-sub-subsection">
+              <label for="instagram" class="instagram"><i class="fab fa-instagram"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="instagram" name="instagram" [(ngModel)]="addContactFormData.instagram" />
+            </div><br>
+            <div class="contact-sub-sub-subsection">
+              <label for="github" class="github"><i class="fab fa-github"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="github" name="github" [(ngModel)]="addContactFormData.github" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-submit">
+        <button>Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- name: req.body.name,
+created_by: req.body.created_by,
+address: req.body.address,
+mobile: req.body.mobile,
+work: req.body.work,
+home: req.body.home,
+email: req.body.email,
+twitter: req.body.twitter,
+instagram: req.body.instagram,
+github: req.body.github -->

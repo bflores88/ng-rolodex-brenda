@@ -14,3 +14,36 @@ body {
 .page {
   margin: 15px;
 }
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  width: 350px;
+  height: 200px;
+  border: 3px solid black;
+  padding: 15px;
+  margin: 20px;
+
+  .contact-name {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid darkgrey;
+  }
+}
+
+.twitter {
+  color: #1dcaff;
+}
+
+.instagram {
+  color: #5851DB;
+}
+
+.github {
+  color: #6e5494;
+}
