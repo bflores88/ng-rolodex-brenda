@@ -63,6 +63,16 @@ router.route('/:id')
         console.log('error', err);
     })
   })
+  .delete((req, res) => {
+    new Contact({ id: req.params.id })
+      .destroy()
+      .then((result) => {
+        return res.json(result.toJSON());
+      })
+      .catch((err) => {
+        console.log('error', err);
+    })
+  })
 
 router.route('/search/:term').get((req, res) => {
   let user = req.query.user;
