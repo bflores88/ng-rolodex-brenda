@@ -1,0 +1,23 @@
+.nav-bar {
+  margin-top: 15px;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 15px;
+    a {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+}
