@@ -41,7 +41,7 @@
 
       <div class="edit-delete">
         <button class="edit-delete-button"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</button>
-        <button class="edit-delete-button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete</button>
+        <button class="edit-delete-button" value="{{contact.id}}" (click)="onDelete($event)"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete</button>
       </div>
     </div>
   </div>

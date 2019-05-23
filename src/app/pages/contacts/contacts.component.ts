@@ -43,4 +43,8 @@ export class ContactsComponent implements OnInit {
     });
   }
 
+  onDelete(e) {
+    console.log(e.target.value)
+  }
+
 }

@@ -27,6 +27,10 @@ export class BackendService {
     const newContact = { name, address, email, mobile, work, home, twitter, instagram, github, created_by }
     return this.http.post('/api/contacts', newContact).toPromise();
   };
+
+  deleteContact(id): Promise<object> {
+    return this.http.delete(`/api/contacts/${id}`).toPromise()
+  }
   
   getContactSearch(term): Promise<object> {
     console.log(term);
