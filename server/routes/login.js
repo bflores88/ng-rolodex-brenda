@@ -7,7 +7,7 @@ const passport = require('passport');
 router.post(
   '/',
   passport.authenticate('local'), (req, res) => {
-    return res.send('{ success: true }')
+    return res.json('{ success: true }')
   }
 );
 
