@@ -1,0 +1,32 @@
+.contact-card-all {
+  width: 350px;
+  height: 200px;
+  border: 3px solid black;
+  padding: 15px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+
+
+  .contact-name {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid darkgrey;
+  }
+}
+
+.edit-delete {
+  text-align: right;
+  
+  .edit-delete-button {
+    margin-left: 10px;
+    border: 0;
+    background-color: #b76e79;
+    padding: 5px 10px;
+    width: 80px;
+    
+  }
+}

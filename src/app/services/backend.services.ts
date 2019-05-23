@@ -7,6 +7,18 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   constructor(private http: HttpClient) { }
 
+  register(data) {
+    return this.http.post('/api/register', data).toPromise();
+  }
+
+  login(data) {
+    return this.http.post('/api/login', data).toPromise();
+  }
+
+  logout() {
+    return this.http.get('/api/logout').toPromise();
+  }
+
   getContacts(): Promise<object> {
     return this.http.get('/api/contacts').toPromise();
   };

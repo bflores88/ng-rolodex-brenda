@@ -6,7 +6,20 @@
       <div class="contact-form-card">
         <div class="contact-name">
           <label for="name"><i class="far fa-user"></i>&nbsp;&nbsp;</label>
-          <input type="text" class="input-name" placeholder="name" name="name" [(ngModel)]="addContactFormData.name" />
+          <input 
+          type="text" 
+          class="input-name" 
+          [ngClass]="{ error: nameInvalid && name.dirty }"
+          placeholder="name" 
+          name="name" 
+          [(ngModel)]="formData.name" 
+          (keyup)="ValidateName()"
+          #name="ngModel"
+          minlength="3"
+          />
+          <div class="error-message" *ngIf="nameInvalid && name.dirty">
+              {{ nameErrorMessage }}
+            </div>
         </div>
 
         <div class="contact-subsection">
@@ -16,7 +29,7 @@
             class="long-input"
             placeholder="address"
             name="address"
-            [(ngModel)]="addContactFormData.address"
+            [(ngModel)]="formData.address"
           />
         </div>
 
@@ -27,7 +40,7 @@
             class="long-input"
             placeholder="email"
             name="email"
-            [(ngModel)]="addContactFormData.email"
+            [(ngModel)]="formData.email"
           />
         </div>
 
@@ -40,7 +53,7 @@
                 class="short-input"
                 placeholder="mobile phone"
                 name="mobile"
-                [(ngModel)]="addContactFormData.mobile"
+                [(ngModel)]="formData.mobile"
               />
             </div>
             <br />
@@ -51,7 +64,7 @@
                 class="short-input"
                 placeholder="work phone"
                 name="work"
-                [(ngModel)]="addContactFormData.work"
+                [(ngModel)]="formData.work"
               />
             </div>
             <br />
@@ -62,7 +75,7 @@
                 class="short-input"
                 placeholder="home phone"
                 name="home"
-                [(ngModel)]="addContactFormData.home"
+                [(ngModel)]="formData.home"
               />
             </div>
           </div>
@@ -74,7 +87,7 @@
                 class="short-input"
                 placeholder="twitter"
                 name="twitter"
-                [(ngModel)]="addContactFormData.twitter"
+                [(ngModel)]="formData.twitter"
               />
             </div>
             <br />
@@ -85,7 +98,7 @@
                 class="short-input"
                 placeholder="instagram"
                 name="instagram"
-                [(ngModel)]="addContactFormData.instagram"
+                [(ngModel)]="formData.instagram"
               />
             </div>
             <br />
@@ -96,7 +109,7 @@
                 class="short-input"
                 placeholder="github"
                 name="github"
-                [(ngModel)]="addContactFormData.github"
+                [(ngModel)]="formData.github"
               />
             </div>
           </div>
@@ -104,7 +117,7 @@
       </div>
 
       <div class="contact-form-submit">
-        <button (click)="submitNewContact()">Submit</button>
+        <button (click)="submitNewContact()" [disabled]="nameInvalid">Submit</button>
       </div>
     </form>
   </div>

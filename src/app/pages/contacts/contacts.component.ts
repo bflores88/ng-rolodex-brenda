@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.services';
 
 interface ContactResponse {
+  id: string;
   name: string;
   address: string;
   mobile: string;
@@ -11,6 +12,7 @@ interface ContactResponse {
   twitter: string;
   instagram: string;
   github: string;
+  created_by: string;
 }
 
 @Component({
@@ -20,6 +22,7 @@ interface ContactResponse {
 })
 export class ContactsComponent implements OnInit {
   contacts: {
+    id: string;
     name: string;
     address: string;
     mobile: string;
@@ -29,6 +32,7 @@ export class ContactsComponent implements OnInit {
     twitter: string;
     instagram: string;
     github: string;
+    created_by: string;
   }[] = []
 
   constructor(private backend: BackendService) { }

@@ -44,7 +44,7 @@ export class AddContactComponent implements OnInit {
     created_by: 1,
   }; 
 
-  addContactFormData: {
+  formData: {
     name: string;
     address: string;
     mobile: string;
@@ -66,9 +66,28 @@ export class AddContactComponent implements OnInit {
     instagram: '',
     github: '',
     created_by: 1,
-  } ;
+    };
+  
+  nameInvalid = true;
+  nameErrorMessage = '';
 
-  constructor(private backend: BackendService) {}
+  constructor(private backend: BackendService) { }
+  
+  ValidateName() {
+    const { name } = this.formData;
+
+    if (!name) {
+      this.nameErrorMessage = 'Name is Required';
+      return (this.nameInvalid = true);
+    } else if (name.length < 3) {
+      this.nameErrorMessage = 'Name is too short';
+      return (this.nameInvalid = true);
+    }
+
+    this.nameErrorMessage = '';
+    return (this.nameInvalid = false);
+
+  }
 
   ngOnInit() {}
 
@@ -85,7 +104,7 @@ export class AddContactComponent implements OnInit {
       instagram,
       github,
       created_by,
-    } = this.addContactFormData;
+    } = this.formData;
     this.backend
       .postContact(name, address, email, mobile, work, home, twitter, instagram, github, created_by)
       .then((data: ContactResponse) => {

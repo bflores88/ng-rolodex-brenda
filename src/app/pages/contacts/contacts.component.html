@@ -2,24 +2,47 @@
   <h1>All Contacts</h1>
 
   <div class="contact-container">
-    <div class="contact-card" *ngFor="let contact of contacts">
-      <div class="contact-name"><i class="far fa-user"></i>&nbsp;&nbsp;{{ contact.name }}</div>
-      <div class="contact-subsection" [hidden]="!contact.address"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{{ contact.address }}</div>
-      <div class="contact-subsection" [hidden]="!contact.email"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{ contact.email }}</div>
+    <div class="contact-card-all" *ngFor="let contact of contacts">
+      <div class="card-wrap">
+          <div class="contact-name"><i class="far fa-user"></i>&nbsp;&nbsp;{{ contact.name }}</div>
+          <div class="contact-subsection" [hidden]="!contact.address">
+            <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{{ contact.address }}
+          </div>
+          <div class="contact-subsection" [hidden]="!contact.email">
+            <i class="fas fa-envelope"></i>&nbsp;&nbsp;{{ contact.email }}
+          </div>
+  
+          <div class="split-subsection">
+            <div class="split-sub">
+              <div class="contact-subsection" [hidden]="!contact.mobile">
+                <i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;{{ contact.mobile }}
+              </div>
+              <div class="contact-subsection" [hidden]="!contact.work">
+                <i class="fas fa-briefcase"></i>&nbsp;&nbsp;{{ contact.work }}
+              </div>
+              <div class="contact-subsection" [hidden]="!contact.home">
+                <i class="fas fa-phone"></i>&nbsp;&nbsp;{{ contact.home }}
+              </div>
+            </div>
+            <div class="split-sub">
+              <div class="contact-subsection" [hidden]="!contact.twitter">
+                <i class="fab fa-twitter-square twitter"></i>&nbsp;&nbsp;{{ contact.twitter }}
+              </div>
+              <div class="contact-subsection" [hidden]="!contact.instagram">
+                <i class="fab fa-instagram instagram"></i>&nbsp;&nbsp;{{ contact.instagram }}
+              </div>
+              <div class="contact-subsection" [hidden]="!contact.github">
+                <i class="fab fa-github github"></i>&nbsp;&nbsp;{{ contact.github }}
+              </div>
+            </div>
+          </div>
 
-      <div class="split-subsection">
-        <div class="split-sub">
-          <div class="contact-subsection" [hidden]="!contact.mobile"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;{{ contact. mobile }}</div>
-          <div class="contact-subsection" [hidden]="!contact.work"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;{{ contact.work }}</div>
-          <div class="contact-subsection" [hidden]="!contact.home"><i class="fas fa-phone"></i>&nbsp;&nbsp;{{ contact.home }}</div>
-        </div>
-        <div class="split-sub">
-          <div class="contact-subsection" [hidden]="!contact.twitter"><i class="fab fa-twitter-square twitter"></i>&nbsp;&nbsp;{{ contact.twitter }}</div>
-          <div class="contact-subsection" [hidden]="!contact.instagram"><i class="fab fa-instagram instagram"></i>&nbsp;&nbsp;{{ contact.instagram }}</div>
-          <div class="contact-subsection" [hidden]="!contact.github"><i class="fab fa-github github"></i>&nbsp;&nbsp;{{ contact.github }}</div>
-        </div>
+      </div>
+
+      <div class="edit-delete">
+        <button class="edit-delete-button"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</button>
+        <button class="edit-delete-button"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete</button>
       </div>
     </div>
   </div>
 </div>
-
