@@ -28,17 +28,14 @@ router.route('/')
               console.log(err);
               return res.send(err);
             }
+
+            let newUser = checkNewInfo(req.body);
+            newUser.password = hash;
     
-            return new User({
-              username: req.body.username,
-              password: hash,
-              name: req.body.name,
-              email: req.body.email,
-              address: req.body.address
-            })
+            return new User(newUser)
               .save()
               .then((user) => {
-                return res.send(user)
+                return res.json(user.toJSON())
               })
               .catch((err) => {
                 return res.send(err);
@@ -52,26 +49,26 @@ router.route('/')
 
   })
 
-// function checkEditedInformation(body) {
-//   const updatedInfo = {};
+function checkNewInfo(body) {
+  const newUserInfo = {};
 
-//   if (body.username) {
-//     updatedInfo.username = body.username;
-//   }
+  if (body.username) {
+    newUserInfo.username = body.username;
+  }
 
-//   if (body.name) {
-//     updatedInfo.name = body.name;
-//   }
+  if (body.name) {
+    newUserInfo.name = body.name;
+  }
 
-//   if (body.email) {
-//     updatedInfo.email = body.email;
-//   }
+  if (body.email) {
+    newUserInfo.email = body.email;
+  }
 
-//   if(body.address) {
-//     updatedInfo.address = body.address;
-//   }
+  if(body.address) {
+    newUserInfo.address = body.address;
+  }
 
-//   return updatedInfo;
-// }
+  return newUserInfo;
+}
 
 module.exports = router;

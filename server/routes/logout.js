@@ -8,5 +8,5 @@ router.route('/')
     req.logout();
     return res.json('{ success: logged out }')
   })
-
+ 
 module.exports = router;

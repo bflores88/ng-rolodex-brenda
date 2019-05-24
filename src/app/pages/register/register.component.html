@@ -1,0 +1,47 @@
+<div class="page">
+  <div class="login-container">
+    <form>
+      <div>
+        <input
+        type="text" 
+        name="username" 
+        placeholder="username" 
+        [(ngModel)]="formData.username"
+        #name="ngModel"
+        minlength="3"
+        />
+        <!-- <div class="error-message" *ngIf="nameInvalid && name.dirty">
+            {{ nameErrorMessage }}
+          </div> -->
+      </div>
+
+      <div>
+        <input 
+        type="password" 
+        name="password" 
+        placeholder="password" 
+        [(ngModel)]="formData.password" />
+      </div>
+
+      <div>
+        <input 
+        type="email" 
+        name="email" 
+        placeholder="email (optional)" 
+        [(ngModel)]="formData.email" />
+      </div>
+
+      <div>
+        <input 
+        type="text" 
+        name="address" 
+        placeholder="address (optional)" 
+        [(ngModel)]="formData.address" />
+      </div>
+
+      <div>
+        <button class="btn" (click)="onSubmit()">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

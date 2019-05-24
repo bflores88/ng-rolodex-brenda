@@ -23,7 +23,7 @@ export class LoginComponent {
       .then((response) => {
         console.log(response)
         console.log('user logged in')
-        this.router.navigate(['/'])
+        this.router.navigate(['/home'])
       })
       .catch((err) => {
       console.log('error', err)

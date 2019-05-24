@@ -17,10 +17,11 @@
           #name="ngModel"
           minlength="3"
           />
-          <div class="error-message" *ngIf="nameInvalid && name.dirty">
-              {{ nameErrorMessage }}
-            </div>
+
         </div>
+        <div class="error-message" *ngIf="nameInvalid && name.dirty">
+            {{ nameErrorMessage }}
+          </div>
 
         <div class="contact-subsection">
           <label for="address" class="sub-label"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;</label>

@@ -12,7 +12,7 @@ exports.up = function (knex, Promise) {
     table.string('twitter', 255);
     table.string('instagram', 255);
     table.string('github', 255);
-    table.integer('created_by').references('id').inTable('users').notNullable();
+    table.integer('created_by').references('id').inTable('users').notNullable().onDelete('CASCADE');
   });
 };
 
