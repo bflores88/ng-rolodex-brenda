@@ -15,6 +15,7 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AddContactComponent } from './pages/add-contact/add-contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RegisterComponent } from './pages/register/register.component';
     ContactsComponent,
     AddContactComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
