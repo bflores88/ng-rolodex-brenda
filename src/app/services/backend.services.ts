@@ -19,6 +19,7 @@ export class BackendService {
     return this.http.get('/api/logout').toPromise();
   }
 
+
   getContacts(userID): Promise<object> {
     return this.http.get(`/api/contacts/?user=${userID}`).toPromise();
   };
@@ -32,7 +33,11 @@ export class BackendService {
     return this.http.delete(`/api/contacts/${id}`).toPromise()
   }
   
-  getContactSearch(term): Promise<object> {
-    return this.http.get(`/api/contacts/search/${term}`).toPromise()
+  getContactSearch(term, userID): Promise<object> {
+    return this.http.get(`/api/contacts/search/${term}?user=${userID}`).toPromise()
   };
+
+  getUserSearch(username): Promise<object> {
+    return this.http.get(`/api/users/${username}`).toPromise()
+  }
 }

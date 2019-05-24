@@ -6,13 +6,15 @@
         type="text" 
         name="username" 
         placeholder="username" 
+        [ngClass]="{ error: nameInvalid && name.dirty }"
         [(ngModel)]="formData.username"
+        (keyup)="ValidateUsername()"
         #name="ngModel"
         minlength="3"
         />
-        <!-- <div class="error-message" *ngIf="nameInvalid && name.dirty">
+        <div class="error-message" *ngIf="nameInvalid && name.dirty">
             {{ nameErrorMessage }}
-          </div> -->
+          </div>
       </div>
 
       <div>
@@ -28,7 +30,15 @@
         type="email" 
         name="email" 
         placeholder="email (optional)" 
-        [(ngModel)]="formData.email" />
+        [ngClass]="{ error: emailInvalid && email.dirty }"
+        [(ngModel)]="formData.email"
+        (keyup)="ValidateEmail()"
+        #email="ngModel"
+         />
+         <div class="error-message" *ngIf="emailInvalid && email.dirty">
+            {{ emailErrorMessage }}
+          </div>
+        
       </div>
 
       <div>

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatFormFieldModule, MatInputModule, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,12 +34,16 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule
+
   ],
-  providers: [],
+  providers: [{provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

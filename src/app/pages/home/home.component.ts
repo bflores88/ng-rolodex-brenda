@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.services';
+import { SessionService } from 'src/app/services/session.service';
 
 interface ContactResponse {
   name: string;
@@ -19,6 +20,8 @@ interface ContactResponse {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  user = 0;
+
   formData: {
     name: string;
   } = {
@@ -37,15 +40,18 @@ export class HomeComponent implements OnInit {
     github: string;
   }[] = [];
 
-  constructor(private backend: BackendService) {}
+  constructor(private backend: BackendService, private session: SessionService) {}
 
   ngOnInit() {
+    let user = this.session.getSession();
+    this.user = parseInt(user.id);
   }
 
   onChange() {
     const { name } = this.formData;
+    const user = this.user ;
     if (this.formData.name !== '') {
-      this.backend.getContactSearch(name).then((data: ContactResponse[]) => {
+      this.backend.getContactSearch(name, user).then((data: ContactResponse[]) => {
         this.contacts = data;
       });
     } else {

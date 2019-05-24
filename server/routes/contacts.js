@@ -73,9 +73,8 @@ router.route('/search/:term').get((req, res) => {
 
   knex('contacts')
   .where(
-    knex.raw('LOWER("name") LIKE ?', `%${lowerSearch}%`))
+    knex.raw('"created_by" = ? AND LOWER("name") LIKE ?', [user, `%${lowerSearch}%`]))
     .then((result) => {
-      console.log(result)
       return res.json(result);
     })
     .catch((err) => {

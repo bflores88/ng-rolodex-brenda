@@ -17,6 +17,20 @@ router.route('/')
     })
   })
 
+router.route('/:username')
+  .get((req, res) => {
+    const user = req.params.username;
+    new User({ username: user })
+      .fetch()
+      .then((result) => {
+        console.log(result)
+        return res.json(result.toJSON())
+      })
+      .catch((err) => {
+      console.log('error', err)
+    })
+})
+
 
 function checkEditedInformation(body) {
   const updatedInfo = {};
