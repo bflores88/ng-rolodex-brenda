@@ -11,7 +11,7 @@ router
     let user = req.query.user;
 
     Contact.forge()
-      // .where({ created_by: user })
+      .where({ created_by: user })
       .orderBy('name', 'ASC')
       .fetchAll({ withRelated: ['users'] })
       .then((result) => {

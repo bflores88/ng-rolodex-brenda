@@ -14,7 +14,7 @@ export class AuthService {
 
   login(data) {
     return this.backend.login(data).then((response) => {
-      return this.session.setSession(data.username);
+      return this.session.setSession(response);
     });
   }
 

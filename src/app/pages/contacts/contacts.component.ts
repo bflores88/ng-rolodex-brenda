@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.services';
+import { SessionService } from 'src/app/services/session.service';
 
 interface ContactResponse {
   id: string;
@@ -35,10 +36,12 @@ export class ContactsComponent implements OnInit {
     created_by: string;
   }[] = []
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService, private session: SessionService) { }
 
   ngOnInit() {
-    this.backend.getContacts().then((data: ContactResponse[]) => {
+    let user = this.session.getSession();
+    let userID = user.id;
+    this.backend.getContacts(userID).then((data: ContactResponse[]) => {
       this.contacts = data;
     });
   }

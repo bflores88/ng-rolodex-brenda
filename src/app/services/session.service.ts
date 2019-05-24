@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class SessionService {
   user = {
     loggedIn: false,
-    username: ''
+    username: '',
+    id: ''
   };
 
   constructor() {
@@ -24,10 +25,11 @@ export class SessionService {
     return this.user;
   }
 
-  setSession(username) {
+  setSession(userData) {
     //save to memory
-    this.user.username = username;
+    this.user.username = userData.username;
     this.user.loggedIn = true;
+    this.user.id = userData.id
 
     //save to local storage
     const userString = JSON.stringify(this.user);
@@ -36,6 +38,7 @@ export class SessionService {
 
   clearSession() {
     this.user.username = '';
+    this.user.id = '';
     this.user.loggedIn = false;
     window.localStorage.removeItem('user');
   }

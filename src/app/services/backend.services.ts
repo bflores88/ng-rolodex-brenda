@@ -19,8 +19,8 @@ export class BackendService {
     return this.http.get('/api/logout').toPromise();
   }
 
-  getContacts(): Promise<object> {
-    return this.http.get('/api/contacts').toPromise();
+  getContacts(userID): Promise<object> {
+    return this.http.get(`/api/contacts/?user=${userID}`).toPromise();
   };
 
   postContact(name: string, address: string, email: string, mobile: string, work: string, home: string, twitter: string, instagram: string, github: string, created_by: number): Promise<object> {

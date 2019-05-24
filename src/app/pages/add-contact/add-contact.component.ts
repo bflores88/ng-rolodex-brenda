@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.services';
+import { SessionService } from 'src/app/services/session.service';
 
 interface ContactResponse {
   name: string;
@@ -42,7 +43,7 @@ export class AddContactComponent implements OnInit {
     instagram: '',
     github: '',
     created_by: 1,
-  }; 
+  };
 
   formData: {
     name: string;
@@ -66,13 +67,13 @@ export class AddContactComponent implements OnInit {
     instagram: '',
     github: '',
     created_by: 1,
-    };
-  
+  };
+
   nameInvalid = true;
   nameErrorMessage = '';
 
-  constructor(private backend: BackendService) { }
-  
+  constructor(private backend: BackendService, private session: SessionService) {}
+
   ValidateName() {
     const { name } = this.formData;
 
@@ -86,30 +87,33 @@ export class AddContactComponent implements OnInit {
 
     this.nameErrorMessage = '';
     return (this.nameInvalid = false);
-
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let user = this.session.getSession();
+    this.formData.created_by = parseInt(user.id);
+  }
 
   submitNewContact() {
     console.log('clicked button');
-    const {
-      name,
-      address,
-      email,
-      mobile,
-      work,
-      home,
-      twitter,
-      instagram,
-      github,
-      created_by,
-    } = this.formData;
+    const { name, address, email, mobile, work, home, twitter, instagram, github, created_by } = this.formData;
     this.backend
       .postContact(name, address, email, mobile, work, home, twitter, instagram, github, created_by)
       .then((data: ContactResponse) => {
-        console.log(data);
         this.contact = data;
+
+        this.formData = {
+          name: '',
+          address: '',
+          mobile: '',
+          work: '',
+          home: '',
+          email: '',
+          twitter: '',
+          instagram: '',
+          github: '',
+          created_by: 1,
+        };
       });
   }
 }
