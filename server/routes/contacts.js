@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/models/User.js');
 const Contact = require('../database/models/Contact.js');
+const knex = require('../database/knex');
 
 router
   .route('/')
@@ -22,7 +23,6 @@ router
       });
   })
   .post((req, res) => {
-    console.log('********', req.body)
     new Contact(checkBodyUpdates(req.body))
       .save()
       .then((result) => {
@@ -68,14 +68,15 @@ router.route('/:id')
 
 router.route('/search/:term').get((req, res) => {
   let user = req.query.user;
-  console.log(req.params.term)
-  Contact.query(function (qb) {
-    qb.where("name", 'LIKE', `%${req.params.term}%`);
-    // qb.where('created_by', '=', user).andWhere('name', 'LIKE', `%${req.params.term}%`);
-  })
-    .fetchAll({ withRelated: 'users' })
+  let search = req.params.term
+  let lowerSearch = search.toLowerCase()
+
+  knex('contacts')
+  .where(
+    knex.raw('LOWER("name") LIKE ?', `%${lowerSearch}%`))
     .then((result) => {
-      return res.json(result.toJSON());
+      console.log(result)
+      return res.json(result);
     })
     .catch((err) => {
       console.log('error', err);

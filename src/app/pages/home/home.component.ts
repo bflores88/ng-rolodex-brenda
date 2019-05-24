@@ -39,13 +39,17 @@ export class HomeComponent implements OnInit {
 
   constructor(private backend: BackendService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onChange() {
-    console.log(this.formData);
     const { name } = this.formData;
-    this.backend.getContactSearch(name).then((data: ContactResponse[]) => {
-      this.contacts = data;
-    })
+    if (this.formData.name !== '') {
+      this.backend.getContactSearch(name).then((data: ContactResponse[]) => {
+        this.contacts = data;
+      });
+    } else {
+      this.contacts = []
+    }
   }
 }

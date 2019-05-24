@@ -33,7 +33,6 @@ export class BackendService {
   }
   
   getContactSearch(term): Promise<object> {
-    console.log(term);
     return this.http.get(`/api/contacts/search/${term}`).toPromise()
   };
 }
