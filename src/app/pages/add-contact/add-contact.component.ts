@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.services';
 import { SessionService } from 'src/app/services/session.service';
+import { Router } from '@angular/router';
 
 interface ContactResponse {
   name: string;
@@ -72,7 +73,7 @@ export class AddContactComponent implements OnInit {
   nameInvalid = true;
   nameErrorMessage = '';
 
-  constructor(private backend: BackendService, private session: SessionService) {}
+  constructor(private backend: BackendService, private session: SessionService, private route: Router) {}
 
   ValidateName() {
     const { name } = this.formData;
@@ -114,6 +115,9 @@ export class AddContactComponent implements OnInit {
           github: '',
           created_by: 1,
         };
+
+        this.route.navigate(['/contacts'])
+        
       });
   }
 }

@@ -19,14 +19,20 @@ export class LoginComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   login() {
-    this.auth.login(this.formData)
+    this.auth
+      .login(this.formData)
       .then((response) => {
-        console.log(response)
-        console.log('user logged in')
-        this.router.navigate(['/home'])
+        const { redirectUrl } = this.auth;
+        if (redirectUrl) {
+          this.router.navigate([redirectUrl]);
+          this.auth.redirectUrl = '';
+        } else {
+          //redirects to the home page
+          this.router.navigate(['/']);
+        }
       })
       .catch((err) => {
-      console.log('error', err)
-    })
+        console.log('error', err);
+      });
   }
 }

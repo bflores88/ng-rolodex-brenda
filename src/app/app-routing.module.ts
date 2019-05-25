@@ -6,15 +6,16 @@ import { AddContactComponent } from './pages/add-contact/add-contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthGuard } from './guards/auth-guard.service';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', canActivate: [AuthGuard], component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'contacts', component: ContactsComponent },
-  { path: 'add-contact', component: AddContactComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'contacts', canActivate: [AuthGuard],component: ContactsComponent },
+  { path: 'add-contact', canActivate: [AuthGuard], component: AddContactComponent },
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

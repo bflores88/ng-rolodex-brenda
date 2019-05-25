@@ -13,10 +13,13 @@ body {
   background-color: rgb(242, 229, 231);
 }
 
+h1 {
+  margin-bottom: 0px;
+}
+
 .page {
   margin: 15px;
   margin-top: 50px;
-  margin-bottom: 50px;
 }
 
 .contact-container {
@@ -34,6 +37,10 @@ body {
   box-shadow: 5px 5px 5px #aaaaaa;
   border-radius: 10px;
   background-color: #eee;
+
+  &:hover {
+    box-shadow: 5px 5px 5px #914853;
+  }
 
   .contact-name {
     padding-bottom: 10px;
@@ -55,7 +62,7 @@ body {
 }
 
 .contact-subsection {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 14px;
   overflow-x: auto;
 }
@@ -71,3 +78,4 @@ body {
     margin-top: 10px;
   }
 }
+

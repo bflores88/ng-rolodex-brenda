@@ -80,8 +80,11 @@ export class ContactsComponent implements OnInit {
   }
 
   onDelete(e) {
+    console.log(e.target.value)
     this.backend.deleteContact(e.target.value).then((data: ContactResponse[]) => {
-      return this.ngOnInit();
+      this.ngOnInit();
+      this.showContacts = true;
+      return this.showEditContact = false;
     })
   }
 
@@ -89,9 +92,10 @@ export class ContactsComponent implements OnInit {
     let contactID = e.target.value;
     this.backend.getSingleContact(contactID).then((data: ContactResponse) => {
       this.formData = data;
+      this.showContacts = false;
+      this.showEditContact = true;
     })
-    this.showContacts = false;
-    this.showEditContact = true;
+
 
   }
 

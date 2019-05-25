@@ -25,11 +25,10 @@
           <input 
           type="text" 
           name="username" 
-          value="{{ user.username }}" 
-          placedholder="username"
+          value="{{user.username}}" 
+          placeholder="username"
           [(ngModel)]="formData.username"
           #username="ngModel"
-          minlength="3"
           />
       </div>
 
@@ -38,8 +37,8 @@
         <input 
         type="text" 
         name="name" 
-        value="{{ user.name }}" 
-        placedholder="name" 
+        value="{{user.name}}" 
+        placeholder="name" 
         [(ngModel)]="formData.name"
         #name="ngModel"
         />
