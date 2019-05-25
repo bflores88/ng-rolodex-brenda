@@ -1,0 +1,99 @@
+.profile-container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 5px #aaaaaa;
+  border-radius: 10px;
+  background-color: #eee;
+  padding: 30px;
+
+    .user-profile {
+      margin: 20px;
+      font-size: 18px;
+    }
+
+    .user-name {
+      font-size: 28px;
+    }
+
+    .edit-delete {
+      text-align: right;
+      
+      .edit-delete-button {
+        margin-left: 10px;
+        border: 0;
+        padding: 10px 15px;
+        width: 120px;
+        color: white;
+        font-size: 16px;
+        border-radius: 10px;
+    
+      }
+    
+      .edit-btn {
+        background: rgb(110,158,183);
+    
+        &:hover {
+          background: darken(rgb(110,158,183), 25%)
+        }
+      }
+    
+      .delete-btn {
+        background: #b76e79;
+    
+        &:hover {
+          background: darken(#b76e79, 25%)
+        }
+      }
+    }
+}
+
+.edit-container {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin: auto;
+  padding: 15px;
+  text-align:center;
+
+  input {
+    width: 90%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 0px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .edit-delete-button {
+    margin-top: 15px;
+    padding: 15px;
+    border: 0px;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+
+    &:disabled {
+      background-color: #ccc;
+    }
+  }
+
+  .edit-btn {
+    background: rgb(110,158,183);
+
+    &:hover {
+      background: darken(rgb(110,158,183), 25%)
+    }
+  }
+
+  .delete-btn {
+    background: #b76e79;
+
+    &:hover {
+      background: darken(#b76e79, 25%)
+    }
+  }
+}

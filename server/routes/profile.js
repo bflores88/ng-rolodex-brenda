@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
   const user = req.query.user;
   console.log(user);
   new User({ id: user })
-    .fetch()
+    .fetch({columns: ['username', 'id', 'name', 'email', 'address']})
     .then((result) => {
       return res.send(result);
     })

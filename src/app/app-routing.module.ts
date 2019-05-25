@@ -9,9 +9,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'add-contact', component: AddContactComponent },
   { path: 'profile', component: ProfileComponent },

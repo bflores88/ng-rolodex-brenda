@@ -30,7 +30,15 @@ export class BackendService {
   };
 
   deleteContact(id): Promise<object> {
-    return this.http.delete(`/api/contacts/${id}`).toPromise()
+    return this.http.delete(`/api/contacts/${id}`).toPromise();
+  }
+
+  getUser(id): Promise<object> {
+    return this.http.get(`/api/profile?user=${id}`).toPromise();
+  }
+
+  editUser(userID, data): Promise<object> {
+    return this.http.put(`/api/users?user=${userID}`, data).toPromise();
   }
   
   getContactSearch(term, userID): Promise<object> {
