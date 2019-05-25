@@ -1,9 +1,11 @@
 <div class="page">
-  <h1>All Contacts</h1>
+  <h1 *ngIf="showContacts">All Contacts</h1>
+  <h1 *ngIf="showEditContact">Edit Contact</h1>
 
-  <div class="contact-container">
+  <div class="contact-container" *ngIf="showContacts">
     <div class="contact-card-all" *ngFor="let contact of contacts">
-      <div class="card-wrap">
+      <div class="contact-card-single">
+        <div class="card-wrap">
           <div class="contact-name"><i class="far fa-user"></i>&nbsp;&nbsp;{{ contact.name }}</div>
           <div class="contact-subsection" [hidden]="!contact.address">
             <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{{ contact.address }}
@@ -11,7 +13,7 @@
           <div class="contact-subsection" [hidden]="!contact.email">
             <i class="fas fa-envelope"></i>&nbsp;&nbsp;{{ contact.email }}
           </div>
-  
+
           <div class="split-subsection">
             <div class="split-sub">
               <div class="contact-subsection" [hidden]="!contact.mobile">
@@ -36,13 +38,150 @@
               </div>
             </div>
           </div>
+        </div>
 
-      </div>
-
-      <div class="edit-delete">
-        <button class="edit-delete-button edit-btn"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</button>
-        <button class="edit-delete-button delete-btn" value="{{contact.id}}" (click)="onDelete($event)"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete</button>
+        <div class="edit-delete">
+          <button class="edit-delete-button edit-btn" value="{{ contact.id }}" (click)="onEdit($event)">
+            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+          </button>
+          <button class="edit-delete-button delete-btn" value="{{ contact.id }}" (click)="onDelete($event)">
+            <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="contact-card-edit" *ngIf="showEditContact">
+  <div class="add-contact-form">
+    <form>
+      <div class="contact-form-card">
+        <div class="contact-name">
+          <label for="name"><i class="far fa-user"></i>&nbsp;&nbsp;</label>
+          <input
+            type="text"
+            class="long-input"
+            placeholder="name"
+            name="name"
+            [(ngModel)]="formData.name"
+            #name="ngModel"
+            minlength="3"
+            value="formData.name"
+          />
+        </div>
+
+        <div class="contact-subsection">
+          <label for="address" class="sub-label"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;</label>
+          <input 
+          type="text" 
+          class="long-input" 
+          placeholder="address" 
+          name="address" 
+          [(ngModel)]="formData.address" 
+          value="formData.address"
+          />
+        </div>
+
+        <div class="contact-subsection">
+          <label for="email"><i class="fas fa-envelope"></i>&nbsp;&nbsp;</label>
+          <input 
+          type="text" 
+          class="long-input" 
+          placeholder="email" 
+          name="email" 
+          [(ngModel)]="formData.email" 
+          value="formData.email"
+          />
+        </div>
+
+        <div class="contact-subsection">
+          <div class="contact-sub-subsection">
+            <div class="contact-sub-sub-subsection">
+              <label for="mobile"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;</label>
+              <input
+                type="text"
+                class="short-input"
+                placeholder="mobile phone"
+                name="mobile"
+                [(ngModel)]="formData.mobile"
+                value="formData.mobile"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="work"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;</label>
+              <input 
+              type="text" 
+              class="short-input" 
+              placeholder="work phone" 
+              name="work" 
+              [(ngModel)]="formData.work" 
+              value="formData.work"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="home"><i class="fas fa-phone"></i>&nbsp;&nbsp;</label>
+              <input 
+              type="text" 
+              class="short-input" 
+              placeholder="home phone" 
+              name="home" 
+              [(ngModel)]="formData.home" 
+              value="formData.home"
+              />
+            </div>
+          </div>
+          <div class="contact-sub-subsection">
+            <div class="contact-sub-sub-subsection">
+              <label for="twitter" class="twitter"><i class="fab fa-twitter-square"></i>&nbsp;&nbsp;</label>
+              <input
+                type="text"
+                class="short-input"
+                placeholder="twitter"
+                name="twitter"
+                [(ngModel)]="formData.twitter"
+                value="formData.twitter"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="instagram" class="instagram"><i class="fab fa-instagram"></i>&nbsp;&nbsp;</label>
+              <input
+                type="text"
+                class="short-input"
+                placeholder="instagram"
+                name="instagram"
+                [(ngModel)]="formData.instagram"
+                value="formData.instagram"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="github" class="github"><i class="fab fa-github"></i>&nbsp;&nbsp;</label>
+              <input 
+              type="text" 
+              class="short-input" 
+              placeholder="github"
+              name="github" 
+              [(ngModel)]="formData.github"
+              value="formData.github"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-submit">
+          <button class="edit-delete-button submit-btn" value="{{formData.id}}" (click)="onSubmitEdit($event)" [disabled]="nameInvalid">
+            Submit
+          </button>
+        </div>
+        <div class="contact-form-submit">
+          <button class="edit-delete-button back-btn" (click)="onGoBack()" [disabled]="nameInvalid">
+            Go Back
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

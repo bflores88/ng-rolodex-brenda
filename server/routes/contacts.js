@@ -46,10 +46,20 @@ router.route('/:id')
     })
   })
   .put((req, res) => {
+    const user = req.body.created_by
     new Contact({ id: req.params.id })
       .save(checkBodyUpdates(req.body))
       .then((result) => {
-        return res.json(result.toJSON());
+        return Contact.forge()
+        .where({ created_by: user })
+        .orderBy('name', 'ASC')
+        .fetchAll({ withRelated: ['users'] })
+        .then((result) => {
+          return res.json(result.toJSON());
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
       })
       .catch((err) => {
         console.log('error', err);
@@ -125,6 +135,7 @@ function checkBodyUpdates(requestBody) {
     updatedContact.created_by = requestBody.created_by;
   }
 
+  console.log('******', updatedContact)
   return updatedContact;
 
 }
