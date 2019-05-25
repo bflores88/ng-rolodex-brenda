@@ -29,6 +29,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+app.use(
+  session({
+    store: new redis({ url: process.env.REDIS_URL }),
+    secret: process.env.REDIS_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -70,11 +80,13 @@ passport.use(
 
 passport.serializeUser(function(user, done) {
   console.log('serializing');
+  console.log(user);
   return done(null, { id: user.id, username: user.username});
 });
 
 passport.deserializeUser(function(user, done) {
   console.log('deserializing');
+  console.log(user);
 
   return new User({ id: user.id })
     .fetch()
@@ -96,9 +108,9 @@ passport.deserializeUser(function(user, done) {
 app.use('/api/login', login);
 app.use('/api/register', register);
 
-// app.use(guard, (req, res, next) => {
-//   next();
-// });
+app.use(guard, (req, res, next) => {
+  next();
+});
 
 app.use('/api/logout', logout);
 app.use('/api/profile', profile);
