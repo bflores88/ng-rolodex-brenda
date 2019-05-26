@@ -4,7 +4,18 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/models/User.js');
 
-router.route('/')
+router
+  .route('/')
+  .get((req, res) => {
+    new User()
+      .fetchAll({ columns: ['id', 'usermame', 'name'] })
+      .then((result) => {
+        return res.json(result.toJSON());
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+  })
   .put((req, res) => {
     const user = req.query.user;
     new User({ id: user })
@@ -14,23 +25,19 @@ router.route('/')
       })
       .catch((err) => {
         console.log('error', err);
-    })
+      });
   })
-
-router.route('/:username')
-  .get((req, res) => {
-    const user = req.params.username;
-    new User({ username: user })
-      .fetch()
+  .delete((req, res) => {
+    const user = req.query.user;
+    new User({ id: user })
+      .destroy()
       .then((result) => {
-        console.log(result)
-        return res.json(result.toJSON())
+        return res.send('{ messsage: "successfully deleted user" } ');
       })
       .catch((err) => {
-      console.log('error', err)
-    })
-})
-
+        console.log('error', err);
+      });
+  });
 
 function checkEditedInformation(body) {
   const updatedInfo = {};
@@ -47,7 +54,7 @@ function checkEditedInformation(body) {
     updatedInfo.email = body.email;
   }
 
-  if(body.address) {
+  if (body.address) {
     updatedInfo.address = body.address;
   }
 

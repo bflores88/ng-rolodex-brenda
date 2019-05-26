@@ -13,7 +13,7 @@ router.route('/')
     new User('username', req.body.username)
       .fetch()
       .then((userObject) => {
-        if(userObject !== null){
+        if (userObject !== null) {
           return res.send('{ error: That username already exists! }')
         }
 
@@ -47,7 +47,23 @@ router.route('/')
         return res.send(err);
       });
 
-  })
+  });
+    
+router.route('/:username')
+  .get((req, res) => {
+    const user = req.params.username;
+    new User({ username: user })
+      .fetch({ columns: ['username'] })
+      .then((result) => {
+        if (!result) {
+          return res.json({ username: false })
+        }
+        return res.json({ username : true })
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  });
 
 function checkNewInfo(body) {
   const newUserInfo = {};

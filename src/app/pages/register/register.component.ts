@@ -3,6 +3,10 @@ import { BackendService } from 'src/app/services/backend.services';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
+interface CheckUserResponse {
+  username: string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,8 +25,12 @@ export class RegisterComponent implements OnInit {
     name: '',
     email: '',
     address: '',
-  };
-
+    };
+  
+  usernameInvalid = true;
+  usernameErrorMessage = '';
+  passwordInvalid = true;
+  passwordErrorMessage = '';
   nameInvalid = true;
   nameErrorMessage = '';
   emailInvalid = true;
@@ -31,6 +39,45 @@ export class RegisterComponent implements OnInit {
   constructor(private backend: BackendService, private auth: AuthService, private router: Router) {}
 
   ngOnInit() { }
+
+  ValidateUsername() {
+    const { username } = this.formData;
+    if (!username) {
+      this.usernameErrorMessage = "Username is required";
+      return (this.usernameInvalid = true);
+    }
+
+    if (username.length < 3) {
+      this.usernameErrorMessage = "Username must have 3 or more characters";
+      return (this.usernameInvalid = true);
+    }
+
+    this.backend.getUserSearch(username).then((data: CheckUserResponse) => {
+      if (data.username) {
+        this.usernameErrorMessage = "Username already exists";
+        return (this.usernameInvalid = true);
+      }
+    })
+
+    this.usernameInvalid = false;
+    this.usernameErrorMessage = '';
+  }
+
+  ValidatePassword() {
+    const { password } = this.formData;
+    if (!password) {
+      this.passwordErrorMessage = "Password is required"
+      return (this.passwordInvalid = true)
+    }
+
+    if (password.length < 6) {
+      this.passwordErrorMessage = "Password must be at least 6 characters long"
+      return (this.passwordInvalid = true)
+    }
+
+    this.passwordInvalid = false;
+    this.passwordErrorMessage = '';
+  }
   
   ValidateName() {
     const { name } = this.formData;
@@ -43,10 +90,6 @@ export class RegisterComponent implements OnInit {
       return (this.nameInvalid = true);
     }
 
-    
-    this.backend.getUserSearch(this.formData.username).then((response) => {
-      console.log(response);
-    })
 
     this.nameErrorMessage = '';
     return (this.nameInvalid = false);

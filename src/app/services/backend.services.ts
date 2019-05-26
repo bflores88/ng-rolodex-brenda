@@ -48,12 +48,17 @@ export class BackendService {
   editUser(userID, data): Promise<object> {
     return this.http.put(`/api/users?user=${userID}`, data).toPromise();
   }
+
+  deleteUser(userID): Promise<object> {
+    console.log('backend delete user reached')
+    return this.http.delete(`/api/users?user=${userID}`).toPromise();
+  }
   
   getContactSearch(term, userID): Promise<object> {
     return this.http.get(`/api/contacts/search/${term}?user=${userID}`).toPromise()
   };
 
   getUserSearch(username): Promise<object> {
-    return this.http.get(`/api/users/${username}`).toPromise()
+    return this.http.get(`/api/register/${username}`).toPromise()
   }
 }

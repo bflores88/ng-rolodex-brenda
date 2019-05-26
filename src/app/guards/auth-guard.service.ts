@@ -12,12 +12,6 @@ export class AuthGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     this.auth.redirectUrl = state.url;
 
-    // //the code below assumes there is a roles table and checks if the user is an admin
-    // const roles = this.session.user.roles;
-    // if (this.session.isLoggedIn() && roles.includes('admin')) {
-    //   return true;
-    // }
-
     if (this.session.isLoggedIn()) {
       return true;
     }

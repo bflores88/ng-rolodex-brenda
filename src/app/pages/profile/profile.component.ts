@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.services';
 import { SessionService } from 'src/app/services/session.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface UserResponse {
   name: string;
@@ -10,6 +12,10 @@ interface UserResponse {
   id: number;
 }
 
+interface CheckUserResponse {
+  username: string;
+}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,6 +23,7 @@ interface UserResponse {
 })
 export class ProfileComponent implements OnInit {
   userID = 0;
+  username = '';
 
   user: {
     name: string;
@@ -24,7 +31,7 @@ export class ProfileComponent implements OnInit {
     address: string;
     email: string;
     id: number;
-  }; 
+  };
 
   editUser: {
     name: string;
@@ -52,16 +59,30 @@ export class ProfileComponent implements OnInit {
 
   showProfile = true;
   showEdit = false;
+  usernameInvalid = true;
+  usernameErrorMessage = '';
 
-  constructor(private backend: BackendService, private session: SessionService) {}
+  constructor(
+    private backend: BackendService,
+    private session: SessionService,
+    private router: Router,
+    private auth: AuthService,
+  ) {}
 
   ngOnInit() {
     let user = this.session.getSession();
     this.userID = parseInt(user.id);
+    this.username = user.username;
+
 
     if (this.userID > 0) {
       return this.getUser();
     }
+  }
+
+  getUserSession() {
+    let user = this.session.getSession();
+    this.userID = parseInt(user.id);
   }
 
   getUser() {
@@ -77,6 +98,29 @@ export class ProfileComponent implements OnInit {
     this.showEdit = true;
   }
 
+  ValidateUsername() {
+    const { username } = this.formData;
+    if (!username) {
+      this.usernameErrorMessage = "Username is required";
+      return (this.usernameInvalid = true);
+    }
+
+    if (username.length < 3) {
+      this.usernameErrorMessage = "Username must have 3 or more characters";
+      return (this.usernameInvalid = true);
+    }
+
+    this.backend.getUserSearch(username).then((data: CheckUserResponse) => {
+      if (data.username && username !== this.username) {
+        this.usernameErrorMessage = "Username already exists";
+        return (this.usernameInvalid = true);
+      }
+    })
+
+    this.usernameInvalid = false;
+    this.usernameErrorMessage = '';
+  }
+
   handleGoBack() {
     this.showProfile = true;
     this.showEdit = false;
@@ -85,11 +129,25 @@ export class ProfileComponent implements OnInit {
   handleEditSubmit() {
     const userID = this.user.id;
     const userUpdate = this.formData;
-    this.backend.editUser(userID, userUpdate).then((data: UserResponse) => {
-      this.user = data;
-    }).then(() => {
-      this.showProfile = true;
-      this.showEdit = false;
-    })
+    this.backend
+      .editUser(userID, userUpdate)
+      .then((data: UserResponse) => {
+        this.user = data;
+      })
+      .then(() => {
+        this.showProfile = true;
+        this.showEdit = false;
+      });
+  }
+
+  handleDeleteUser() {
+    console.log('clicked delete user');
+    const userID = this.user.id;
+    console.log('userID', userID);
+
+    return this.auth.logout().then(() => {
+      this.backend.deleteUser(userID);
+      this.router.navigate(['/login']);
+    });
   }
 }

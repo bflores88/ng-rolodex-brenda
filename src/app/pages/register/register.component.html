@@ -6,15 +6,15 @@
         <input
         type="text" 
         name="username" 
-        placeholder="username" 
-        [ngClass]="{ error: nameInvalid && name.dirty }"
+        placeholder="username"
+        [ngClass]="{ error: usernameInvalid && username.dirty }"
         [(ngModel)]="formData.username"
         (keyup)="ValidateUsername()"
-        #name="ngModel"
+        #username="ngModel"
         minlength="3"
         />
-        <div class="error-message" *ngIf="nameInvalid && name.dirty">
-            {{ nameErrorMessage }}
+        <div class="error-message" *ngIf="usernameInvalid && username.dirty">
+            {{ usernameErrorMessage }}
           </div>
       </div>
 
@@ -23,22 +23,34 @@
         type="password" 
         name="password" 
         placeholder="password" 
-        [(ngModel)]="formData.password" />
+        [ngClass]="{ error: passwordInvalid && password.dirty }"
+        [(ngModel)]="formData.password" 
+        (keyup)="ValidatePassword()"
+        #password="ngModel"
+        />
+        <div class="error-message" *ngIf="passwordInvalid && password.dirty">
+            {{ passwordErrorMessage }}
+          </div>
       </div>
+
+      <div>
+          <input 
+          type="text" 
+          name="name" 
+          placeholder="name (optional)" 
+          [(ngModel)]="formData.name" 
+          #name="ngModel"
+          />
+        </div>
 
       <div>
         <input 
         type="email" 
         name="email" 
         placeholder="email (optional)" 
-        [ngClass]="{ error: emailInvalid && email.dirty }"
         [(ngModel)]="formData.email"
-        (keyup)="ValidateEmail()"
         #email="ngModel"
          />
-         <div class="error-message" *ngIf="emailInvalid && email.dirty">
-            {{ emailErrorMessage }}
-          </div>
         
       </div>
 
@@ -51,7 +63,7 @@
       </div>
 
       <div>
-        <button class="btn" (click)="onSubmit()">Submit</button>
+        <button class="btn" [disabled]="usernameInvalid || passwordInvalid" (click)="onSubmit()">Submit</button>
       </div>
 
       <div>

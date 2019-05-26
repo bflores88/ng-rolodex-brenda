@@ -44,7 +44,8 @@
     background: rgb(110,158,183);
 
     &:hover {
-      background: darken(rgb(110,158,183), 25%)
+      background: darken(rgb(110,158,183), 25%);
+      cursor: pointer;
     }
   }
 
@@ -132,14 +133,27 @@
 
     &:hover {
       background: darken(rgb(110, 158, 183), 25%);
+      cursor: pointer;
+    }
+  }
+
+  .delete-btn {
+    background: #b76e79;
+
+    &:hover {
+      background: darken(#b76e79, 25%);
+      cursor: pointer;
     }
   }
 
   .back-btn {
-    background: #b76e79;
+    background: #6eb788;
 
     &:hover {
-      background: darken(#b76e79, 25%)
+      background: darken(#6eb788, 25%);
+      cursor: pointer;
     }
   }
+  
 }
+

@@ -34,7 +34,8 @@
         background: rgb(110,158,183);
     
         &:hover {
-          background: darken(rgb(110,158,183), 25%)
+          background: darken(rgb(110,158,183), 25%);
+          cursor: pointer;
         }
       }
     
@@ -42,7 +43,8 @@
         background: #b76e79;
     
         &:hover {
-          background: darken(#b76e79, 25%)
+          background: darken(#b76e79, 25%);
+          cursor: pointer;
         }
       }
     }
@@ -85,7 +87,8 @@
     background: rgb(110,158,183);
 
     &:hover {
-      background: darken(rgb(110,158,183), 25%)
+      background: darken(rgb(110,158,183), 25%);
+      cursor: pointer;
     }
   }
 
@@ -93,7 +96,32 @@
     background: #b76e79;
 
     &:hover {
-      background: darken(#b76e79, 25%)
+      background: darken(#b76e79, 25%);
+      cursor: pointer;
     }
   }
+
+  .back-btn {
+    background: #6eb788;
+
+    &:hover {
+      background: darken(#6eb788, 25%);
+      cursor: pointer;
+    }
+  }
+}
+
+.error-message {
+  background-color: red;
+  color: white;
+  margin-top: -10px;
+  height: 40px;
+  padding: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius:  10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 90%;
+  margin-left: 32px;
 }

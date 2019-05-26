@@ -2,18 +2,23 @@
   width: 100%;
   height: 60px;
   padding: 10px;
-  background-color: lightgrey;
+  background-image: linear-gradient(to right, darken(lightgrey, 30%), lightgrey);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 
 
   .header-title {
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 24px;
     font-stretch: extra-expanded;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: 900;
+    text-shadow: 2px 2px 3px #be7b85;
   }
 }

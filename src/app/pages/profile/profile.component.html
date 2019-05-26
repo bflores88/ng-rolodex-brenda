@@ -1,4 +1,5 @@
 <div class="page">
+  <h1>My Profile</h1>
   <div class="profile-container" *ngIf="showProfile">
     <div class="profile-card">
       <div class="user-profile user-name" [hidden]="!user.name"><i class="fas fa-user-circle"></i>&nbsp;&nbsp;{{ user.name }}</div>
@@ -11,9 +12,6 @@
 
       <div class="edit-delete">
         <button class="edit-delete-button edit-btn" (click)="handleUserEdit()"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</button>
-        <!-- <button class="edit-delete-button delete-btn" value="{{ user.id }}" (click)="onDelete($event)">
-          <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete
-        </button> -->
       </div>
     </div>
   </div>
@@ -27,9 +25,15 @@
           name="username" 
           value="{{user.username}}" 
           placeholder="username"
+          [ngClass]="{ error: usernameInvalid && username.dirty }"
           [(ngModel)]="formData.username"
           #username="ngModel"
+          (keyup)="ValidateUsername()"
+          minlength="3"
           />
+          <div class="error-message" *ngIf="usernameInvalid && username.dirty">
+              {{ usernameErrorMessage }}
+            </div>
       </div>
 
       <div class="user-profile">
@@ -66,8 +70,9 @@
         #email="ngModel" /></div>
 
       <div class="edit-delete">
-        <button class="edit-delete-button edit-btn" (click)="handleEditSubmit()">Submit</button>
-        <button class="edit-delete-button delete-btn" (click)="handleGoBack()">
+        <button class="edit-delete-button edit-btn" [disabled]="usernameInvalid" (click)="handleEditSubmit()">Update My Account</button>
+        <button class="edit-delete-button delete-btn" (click)="handleDeleteUser()">Delete My Account</button>
+        <button class="edit-delete-button back-btn" (click)="handleGoBack()">
             <i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Go Back
         </button>
       </div>
