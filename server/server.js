@@ -80,7 +80,6 @@ passport.use(
 
 passport.serializeUser(function(user, done) {
   console.log('serializing');
-  console.log(user);
   return done(null, { id: user.id, username: user.username});
 });
 
