@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
 
   showProfile = true;
   showEdit = false;
-  usernameInvalid = true;
+  usernameInvalid = false;
   usernameErrorMessage = '';
 
   constructor(

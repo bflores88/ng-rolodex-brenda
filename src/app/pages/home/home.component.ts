@@ -49,13 +49,13 @@ export class HomeComponent implements OnInit {
 
   onChange() {
     const { name } = this.formData;
-    const user = this.user ;
+    const user = this.user;
     if (this.formData.name !== '') {
       this.backend.getContactSearch(name, user).then((data: ContactResponse[]) => {
         this.contacts = data;
       });
     } else {
-      this.contacts = []
+      this.contacts = [];
     }
   }
 }

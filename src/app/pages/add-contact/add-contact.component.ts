@@ -43,7 +43,7 @@ export class AddContactComponent implements OnInit {
     twitter: '',
     instagram: '',
     github: '',
-    created_by: 1,
+    created_by: 0,
   };
 
   formData: {
@@ -67,11 +67,13 @@ export class AddContactComponent implements OnInit {
     twitter: '',
     instagram: '',
     github: '',
-    created_by: 1,
+    created_by: 0,
   };
 
   nameInvalid = true;
   nameErrorMessage = '';
+  showAddForm = true;
+  showSuccess = false;
 
   constructor(private backend: BackendService, private session: SessionService, private route: Router) {}
 
@@ -113,11 +115,33 @@ export class AddContactComponent implements OnInit {
           twitter: '',
           instagram: '',
           github: '',
-          created_by: 1,
+          created_by: 0,
         };
 
-        this.route.navigate(['/contacts'])
+        this.showAddForm = false;
+        this.showSuccess = true;
+
+        // this.route.navigate(['/contacts'])
         
       });
+  }
+
+  hideNewContact() {
+    this.ngOnInit();
+    this.contact = {
+      name: '',
+      address: '',
+      mobile: '',
+      work: '',
+      home: '',
+      email: '',
+      twitter: '',
+      instagram: '',
+      github: '',
+      created_by: 0,
+    }
+
+    this.showAddForm = true;
+    this.showSuccess = false;
   }
 }
