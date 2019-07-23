@@ -31,6 +31,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
+    console.log('clicked logout')
     return this.auth.logout()
       .then(() => {
         this.router.navigate(['/login'])
