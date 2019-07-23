@@ -1,0 +1,32 @@
+<div class="nav-bar">
+  <div class="logged-in" *ngIf="isLoggedIn()">
+    <div class="welcome-message">Welcome, {{ user.username }} !</div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-bars"></i>&nbsp;&nbsp;Menu</button>
+      <mat-menu #menu="matMenu">
+        <a routerLink="/">
+          <button class="nav-btn" mat-menu-item><i class="fas fa-home"></i>&nbsp;&nbsp;Home</button>
+        </a>
+
+        <a routerLink="contacts">
+          <button class="nav-btn" mat-menu-item>
+            <i class="far fa-address-book"></i>&nbsp;&nbsp;View All Contacts
+          </button>
+        </a>
+
+        <a routerLink="add-contact">
+          <button class="nav-btn" mat-menu-item><i class="fas fa-plus"></i>&nbsp;&nbsp;Create Contacts</button>
+        </a>
+
+        <a routerLink="profile">
+          <button class="nav-btn" mat-menu-item><i class="fas fa-address-card"></i>&nbsp;&nbsp;My Profile</button>
+        </a>
+
+        <button class="nav-btn" mat-menu-item (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Log Out
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+</div>

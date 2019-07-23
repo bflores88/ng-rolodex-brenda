@@ -1,0 +1,25 @@
+<div class="page">
+    <h1>Welcome!
+      <br><br>Log In To Continue</h1>
+  
+    <div class="login-container">
+      <form>
+        <div>
+          <input type="text" name="username" placeholder="username" [(ngModel)]="formData.username" />
+        </div>
+  
+        <div>
+          <input type="password" name="password" placeholder="password" [(ngModel)]="formData.password" />
+        </div>
+  
+        <div>
+          <button class="btn" (click)="login()">Login</button>
+        </div>
+        <br>  
+        Don't have an account?  Sign up below!
+        <div>
+            <a routerLink="/register"><button class="btn reg-btn">Register</button></a>
+          </div>
+      </form>
+    </div>
+  </div>

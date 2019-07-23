@@ -1,0 +1,74 @@
+<div class="page">
+  <h1>Register to create an account</h1>
+  <div class="login-container">
+    <form>
+      <div>
+        <input
+        type="text" 
+        name="username" 
+        placeholder="username"
+        [ngClass]="{ error: usernameInvalid && username.dirty }"
+        [(ngModel)]="formData.username"
+        (keyup)="ValidateUsername()"
+        #username="ngModel"
+        minlength="3"
+        />
+        <div class="error-message" *ngIf="usernameInvalid && username.dirty">
+            {{ usernameErrorMessage }}
+          </div>
+      </div>
+
+      <div>
+        <input 
+        type="password" 
+        name="password" 
+        placeholder="password" 
+        [ngClass]="{ error: passwordInvalid && password.dirty }"
+        [(ngModel)]="formData.password" 
+        (keyup)="ValidatePassword()"
+        #password="ngModel"
+        />
+        <div class="error-message" *ngIf="passwordInvalid && password.dirty">
+            {{ passwordErrorMessage }}
+          </div>
+      </div>
+
+      <div>
+          <input 
+          type="text" 
+          name="name" 
+          placeholder="name (optional)" 
+          [(ngModel)]="formData.name" 
+          #name="ngModel"
+          />
+        </div>
+
+      <div>
+        <input 
+        type="email" 
+        name="email" 
+        placeholder="email (optional)" 
+        [(ngModel)]="formData.email"
+        #email="ngModel"
+         />
+        
+      </div>
+
+      <div>
+        <input 
+        type="text" 
+        name="address" 
+        placeholder="address (optional)" 
+        [(ngModel)]="formData.address" />
+      </div>
+
+      <div>
+        <button class="btn" [disabled]="usernameInvalid || passwordInvalid" (click)="onSubmit()">Submit</button>
+      </div>
+
+      <div>
+          <button class="btn back-btn" (click)="onBackToLogin()">Back to Login</button>
+        </div>
+    </form>
+  </div>
+</div>

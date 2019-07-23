@@ -1,0 +1,145 @@
+<div class="page">
+  <h1 *ngIf="showAddForm">Add Contact</h1>
+  <h1 *ngIf="showSuccess">Contact Added!</h1>
+  <div *ngIf="showAddForm" class="add-contact-form">
+    <form>
+      <div class="contact-form-card">
+        <div class="contact-name">
+          <label for="name"><i class="far fa-user"></i>&nbsp;&nbsp;</label>
+          <input
+            type="text"
+            class="long-input"
+            [ngClass]="{ error: nameInvalid && name.dirty }"
+            placeholder="name"
+            name="name"
+            [(ngModel)]="formData.name"
+            (keyup)="ValidateName()"
+            #name="ngModel"
+            minlength="3"
+          />
+        </div>
+        <div class="error-message" *ngIf="nameInvalid && name.dirty">
+          {{ nameErrorMessage }}
+        </div>
+
+        <div class="contact-subsection">
+          <label for="address" class="sub-label"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;</label>
+          <input type="text" class="long-input" placeholder="address" name="address" [(ngModel)]="formData.address" />
+        </div>
+
+        <div class="contact-subsection">
+          <label for="email"><i class="fas fa-envelope"></i>&nbsp;&nbsp;</label>
+          <input type="text" class="long-input" placeholder="email" name="email" [(ngModel)]="formData.email" />
+        </div>
+
+        <div class="contact-subsection">
+          <div class="contact-sub-subsection">
+            <div class="contact-sub-sub-subsection">
+              <label for="mobile"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;</label>
+              <input
+                type="text"
+                class="short-input"
+                placeholder="mobile phone"
+                name="mobile"
+                [(ngModel)]="formData.mobile"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="work"><i class="fas fa-briefcase"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="work phone" name="work" [(ngModel)]="formData.work" />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="home"><i class="fas fa-phone"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="home phone" name="home" [(ngModel)]="formData.home" />
+            </div>
+          </div>
+          <div class="contact-sub-subsection">
+            <div class="contact-sub-sub-subsection">
+              <label for="twitter" class="twitter"><i class="fab fa-twitter-square"></i>&nbsp;&nbsp;</label>
+              <input
+                type="text"
+                class="short-input"
+                placeholder="twitter"
+                name="twitter"
+                [(ngModel)]="formData.twitter"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="instagram" class="instagram"><i class="fab fa-instagram"></i>&nbsp;&nbsp;</label>
+              <input
+                type="text"
+                class="short-input"
+                placeholder="instagram"
+                name="instagram"
+                [(ngModel)]="formData.instagram"
+              />
+            </div>
+            <br />
+            <div class="contact-sub-sub-subsection">
+              <label for="github" class="github"><i class="fab fa-github"></i>&nbsp;&nbsp;</label>
+              <input type="text" class="short-input" placeholder="github" name="github" [(ngModel)]="formData.github" />
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-submit">
+          <button class="edit-delete-button submit-btn" (click)="submitNewContact()" [disabled]="nameInvalid">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="showSuccess" class="contact-added">
+      <div class="contact-card-single">
+          <div class="card-wrap">
+            <div class="contact-name"><i class="far fa-user"></i>&nbsp;&nbsp;{{ contact.name }}</div>
+  
+            <div class="contact-subsection" [hidden]="!contact.address">
+              <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{{ contact.address }}
+            </div>
+  
+            <div class="contact-subsection" [hidden]="!contact.email">
+              <i class="fas fa-envelope"></i>&nbsp;&nbsp;{{ contact.email }}
+            </div>
+  
+            <div class="split-subsection">
+              <div class="split-sub">
+                <div class="contact-subsection" [hidden]="!contact.mobile">
+                  <i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;{{ contact.mobile }}
+                </div>
+  
+                <div class="contact-subsection" [hidden]="!contact.work">
+                  <i class="fas fa-briefcase"></i>&nbsp;&nbsp;{{ contact.work }}
+                </div>
+  
+                <div class="contact-subsection" [hidden]="!contact.home">
+                  <i class="fas fa-phone"></i>&nbsp;&nbsp;{{ contact.home }}
+                </div>
+              </div>
+  
+              <div class="split-sub">
+                <div class="contact-subsection" [hidden]="!contact.twitter">
+                  <i class="fab fa-twitter-square twitter"></i>&nbsp;&nbsp;{{ contact.twitter }}
+                </div>
+  
+                <div class="contact-subsection" [hidden]="!contact.instagram">
+                  <i class="fab fa-instagram instagram"></i>&nbsp;&nbsp;{{ contact.instagram }}
+                </div>
+  
+                <div class="contact-subsection" [hidden]="!contact.github">
+                  <i class="fab fa-github github"></i>&nbsp;&nbsp;{{ contact.github }}
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="edit-delete">
+            <button class="edit-delete-button submit-btn" (click)="hideNewContact()">
+              <i class="far fa-edit"></i>&nbsp;&nbsp;Add More Contacts
+            </button>
+          </div>
+        </div>
+  </div>
+</div>

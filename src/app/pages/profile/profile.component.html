@@ -1,0 +1,81 @@
+<div class="page">
+  <h1>My Profile</h1>
+  <div class="profile-container" *ngIf="showProfile">
+    <div class="profile-card">
+      <div class="user-profile user-name" [hidden]="!user.name"><i class="fas fa-user-circle"></i>&nbsp;&nbsp;{{ user.name }}</div>
+
+      <div class="user-profile" [hidden]="!user.address">
+        <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{{ user.address }}
+      </div>
+
+      <div class="user-profile" [hidden]="!user.email"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{ user.email }}</div>
+
+      <div class="edit-delete">
+        <button class="edit-delete-button edit-btn" (click)="handleUserEdit()"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-container" *ngIf="showEdit">
+    <div class="profile-card">
+      <div class="user-profile">
+          <i class="far fa-smile"></i>&nbsp;&nbsp;
+          <input 
+          type="text" 
+          name="username" 
+          value="{{user.username}}" 
+          placeholder="username"
+          [ngClass]="{ error: usernameInvalid && username.dirty }"
+          [(ngModel)]="formData.username"
+          #username="ngModel"
+          (keyup)="ValidateUsername()"
+          minlength="3"
+          />
+          <div class="error-message" *ngIf="usernameInvalid && username.dirty">
+              {{ usernameErrorMessage }}
+            </div>
+      </div>
+
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>&nbsp;&nbsp; 
+        <input 
+        type="text" 
+        name="name" 
+        value="{{user.name}}" 
+        placeholder="name" 
+        [(ngModel)]="formData.name"
+        #name="ngModel"
+        />
+      </div>
+
+      <div class="user-profile">
+        <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp; 
+        <input 
+        type="text" 
+        name="address" 
+        value="{{user.address}}" 
+        placeholder="address"
+        [(ngModel)]="formData.address"
+        #address="ngModel"
+        />
+      </div>
+
+      <div class="user-profile"><i class="fas fa-envelope"></i>&nbsp;&nbsp;
+        <input 
+        type="email" 
+        name="email" 
+        value="{{user.email}}"
+        placeholder="email"
+        [(ngModel)]="formData.email"
+        #email="ngModel" /></div>
+
+      <div class="edit-delete">
+        <button class="edit-delete-button edit-btn" [disabled]="usernameInvalid" (click)="handleEditSubmit()">Update My Account</button>
+        <button class="edit-delete-button delete-btn" (click)="handleDeleteUser()">Delete My Account</button>
+        <button class="edit-delete-button back-btn" (click)="handleGoBack()">
+            <i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Go Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

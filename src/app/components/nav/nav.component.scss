@@ -1,0 +1,31 @@
+.nav-bar {
+  margin-top: 5px;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 20px;
+  text-align: right;
+
+}
+
+.logged-in {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .welcome-message {
+    margin-top: 4px;
+    margin-right: 10px;
+
+  }
+}
+
+.mat-menu-item :hover {
+  font-style: italic;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
